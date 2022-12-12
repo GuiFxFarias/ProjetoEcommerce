@@ -1,0 +1,39 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.allProject{
+    height: 100vh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project{
+    border: 1px solid red;
+    height: 400px;
+    width: 700px;
+    margin: auto;
+}
+.buyedItens{
+    height: 100vh;
+    width: 30%;
+    border: 1px solid red;
+}
+
+.listItens{
+    display: flex;
+
+    list-style: none;
+    height: 80%;
+    align-items: center;
+}
+
+.item{
+    width: 100%;
+    
+}
