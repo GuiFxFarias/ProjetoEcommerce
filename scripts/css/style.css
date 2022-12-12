@@ -31,10 +31,31 @@ body{
 
 .listItens {
   display: flex;
-
   list-style: none;
   height: 85%;
   align-items: center;
+}
+
+
+.image1{
+    background-image: url("../imagens/GokuSS3.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.image2{
+    background-image: url("../imagens/Gokuzito.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.image3{
+    background-image: url("../imagens/One\ piece\ grupo.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .item {
