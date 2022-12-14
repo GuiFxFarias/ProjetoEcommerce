@@ -34,18 +34,21 @@ if (page) {
       id: 1,
       name: "Gotenks Super Sayajin 3",
       description: "Dragon Ball Z",
+      lenght: 1,
       price: 40,
     },
     {
       id: 2,
       name: "Baby Goku",
       description: "Dragon Ball Z",
+      lenght: 1,
       price: 40,
     },
     {
       id: 3,
       name: "One Piece Personagens",
       description: "One Piece",
+      lenght: 1,
       price: 40,
     },
   ];
@@ -61,8 +64,6 @@ if (page) {
       const itens = listItens.find((item) => {
         return item.id == id;
       });
-
-      
 
       if (itens) {
         const li = document.createElement("li") as HTMLLIElement;
@@ -86,29 +87,31 @@ if (page) {
       const li = document.createElement("li") as HTMLLIElement;
 
       li.innerHTML = `
-      <li class="buy"><input type="checkbox" name="buy" id="buy" class="buyBtn" value="${item.id}"></li>
+      <li class="buy"><button value="${item.id}">Adicione ao Carrinho</button></li>
       `;
 
       text.innerHTML = `
       <li class="itemName">${item.name} - <strong>${item.description}</strong> - R$ ${item.price}</li>
       `;
 
-      const input = li.querySelector("input") as HTMLInputElement;
+      const button = li.querySelector("button") as HTMLButtonElement;
 
-      input.addEventListener("change", (e) => {
+      button.addEventListener("click", (e) => {
         e.preventDefault();
 
-        const element = e.target as HTMLInputElement;
+        const element = e.target as HTMLButtonElement;
+        const elValue = Number(element.value);
 
-        if (element.checked) {
+        if (element) {
           selectedItens.push(Number(element.value));
         } else {
           selectedItens = selectedItens.filter((id) => {
-            return id !== Number(element.value);
+            return id !== elValue;
           });
         }
         renderAddItens();
       });
+
       buyButton.appendChild(li);
       itensEl.appendChild(text);
     });

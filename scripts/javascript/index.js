@@ -26,18 +26,21 @@ if (page) {
             id: 1,
             name: "Gotenks Super Sayajin 3",
             description: "Dragon Ball Z",
+            lenght: 1,
             price: 40,
         },
         {
             id: 2,
             name: "Baby Goku",
             description: "Dragon Ball Z",
+            lenght: 1,
             price: 40,
         },
         {
             id: 3,
             name: "One Piece Personagens",
             description: "One Piece",
+            lenght: 1,
             price: 40,
         },
     ];
@@ -67,21 +70,22 @@ if (page) {
             const text = document.createElement("button");
             const li = document.createElement("li");
             li.innerHTML = `
-      <li class="buy"><input type="checkbox" name="buy" id="buy" class="buyBtn" value="${item.id}"></li>
+      <li class="buy"><button value="${item.id}">Adicione ao Carrinho</button></li>
       `;
             text.innerHTML = `
       <li class="itemName">${item.name} - <strong>${item.description}</strong> - R$ ${item.price}</li>
       `;
-            const input = li.querySelector("input");
-            input.addEventListener("change", (e) => {
+            const button = li.querySelector("button");
+            button.addEventListener("click", (e) => {
                 e.preventDefault();
                 const element = e.target;
-                if (element.checked) {
+                const elValue = Number(element.value);
+                if (element) {
                     selectedItens.push(Number(element.value));
                 }
                 else {
                     selectedItens = selectedItens.filter((id) => {
-                        return id !== Number(element.value);
+                        return id !== elValue;
                     });
                 }
                 renderAddItens();
