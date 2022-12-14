@@ -32,7 +32,7 @@ body{
 .listItens {
   display: flex;
   list-style: none;
-  height: 85%;
+  height: 70%;
   align-items: center;
 }
 
@@ -107,10 +107,28 @@ img {
   cursor: pointer;
 }
 
+.buyButton{
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.buyBtn{
+  height: 40px;
+  width: 100px;
+}
+
+.name{
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
 .boughtItens h2 {
   text-align: center;
   margin: 10px;
 }
+
 
 .tittle{
     display: flex;
