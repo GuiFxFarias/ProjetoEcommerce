@@ -51,7 +51,6 @@ if (page) {
   ];
 
   let selectedItens = [] as number[];
-  const buyButton = page.querySelector(".buyButton") as HTMLUListElement;
   const boughtItens = page.querySelector(".itensBought") as HTMLUListElement;
 
   const renderAddItens = () => {
@@ -62,13 +61,11 @@ if (page) {
         return item.id == id;
       });
 
-      
-
       if (itens) {
         const li = document.createElement("li") as HTMLLIElement;
 
         li.innerHTML = `
-        <li class="itemBought"><strong>${itens.name}</strong> - R$ ${itens.price}</li>
+        <li class="itemBought"><strong>${itens.name}</strong> - R$ ${itens.price}- <select></select></li>
         `;
 
         boughtItens.appendChild(li);
@@ -76,40 +73,38 @@ if (page) {
     });
   };
   const itensEl = page.querySelector(".itensName") as HTMLUListElement;
+  const nameButtonEl = page.querySelector(".name") as HTMLUListElement;
 
   const renderItensEl = () => {
-    itensEl.innerHTML = "";
-    buyButton.innerHTML = "";
-
     listItens.forEach((item) => {
       const text = document.createElement("button") as HTMLButtonElement;
       const li = document.createElement("li") as HTMLLIElement;
-
-      li.innerHTML = `
-      <li class="buy"><input type="checkbox" name="buy" id="buy" class="buyBtn" value="${item.id}"></li>
-      `;
 
       text.innerHTML = `
       <li class="itemName">${item.name} - <strong>${item.description}</strong> - R$ ${item.price}</li>
       `;
 
-      const input = li.querySelector("input") as HTMLInputElement;
+      li.innerHTML = `
+      <li class="littleName"><button value="${item.id}">Adicione ao Carrinho</button></li>
+      `;
 
-      input.addEventListener("change", (e) => {
+      li.addEventListener("click", (e) => {
         e.preventDefault();
 
-        const element = e.target as HTMLInputElement;
+        const element = e.target as HTMLButtonElement;
 
-        if (element.checked) {
+        if (element.value) {
           selectedItens.push(Number(element.value));
+          console.log(selectedItens);
         } else {
           selectedItens = selectedItens.filter((id) => {
             return id !== Number(element.value);
           });
         }
-        renderAddItens();
+        renderAddItens()
       });
-      buyButton.appendChild(li);
+
+      nameButtonEl.appendChild(li);
       itensEl.appendChild(text);
     });
   };

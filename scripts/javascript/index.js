@@ -42,7 +42,6 @@ if (page) {
         },
     ];
     let selectedItens = [];
-    const buyButton = page.querySelector(".buyButton");
     const boughtItens = page.querySelector(".itensBought");
     const renderAddItens = () => {
         boughtItens.innerHTML = "";
@@ -53,31 +52,30 @@ if (page) {
             if (itens) {
                 const li = document.createElement("li");
                 li.innerHTML = `
-        <li class="itemBought"><strong>${itens.name}</strong> - R$ ${itens.price}</li>
+        <li class="itemBought"><strong>${itens.name}</strong> - R$ ${itens.price}- <select></select></li>
         `;
                 boughtItens.appendChild(li);
             }
         });
     };
     const itensEl = page.querySelector(".itensName");
+    const nameButtonEl = page.querySelector(".name");
     const renderItensEl = () => {
-        itensEl.innerHTML = "";
-        buyButton.innerHTML = "";
         listItens.forEach((item) => {
             const text = document.createElement("button");
             const li = document.createElement("li");
-            li.innerHTML = `
-      <li class="buy"><input type="checkbox" name="buy" id="buy" class="buyBtn" value="${item.id}"></li>
-      `;
             text.innerHTML = `
       <li class="itemName">${item.name} - <strong>${item.description}</strong> - R$ ${item.price}</li>
       `;
-            const input = li.querySelector("input");
-            input.addEventListener("change", (e) => {
+            li.innerHTML = `
+      <li class="littleName"><button value="${item.id}">Adicione ao Carrinho</button></li>
+      `;
+            li.addEventListener("click", (e) => {
                 e.preventDefault();
                 const element = e.target;
-                if (element.checked) {
+                if (element.value) {
                     selectedItens.push(Number(element.value));
+                    console.log(selectedItens);
                 }
                 else {
                     selectedItens = selectedItens.filter((id) => {
@@ -86,7 +84,7 @@ if (page) {
                 }
                 renderAddItens();
             });
-            buyButton.appendChild(li);
+            nameButtonEl.appendChild(li);
             itensEl.appendChild(text);
         });
     };

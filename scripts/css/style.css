@@ -107,6 +107,14 @@ img {
   cursor: pointer;
 }
 
+.littleName button{
+  background-color: rgb(255, 208, 0);
+  padding: 7px;
+  border-radius: 20px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
 .buyButton{
   display: flex;
   justify-content: space-around;
