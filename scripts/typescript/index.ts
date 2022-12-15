@@ -54,28 +54,10 @@ if (page) {
   ];
 
   let selectedItens = [] as number[];
+  let lengthItens = [] as number[];
   const buyButton = page.querySelector(".buyButton") as HTMLUListElement;
   const boughtItens = page.querySelector(".itensBought") as HTMLUListElement;
 
-  const renderAddItens = () => {
-    boughtItens.innerHTML = "";
-
-    selectedItens.forEach((id) => {
-      const itens = listItens.find((item) => {
-        return item.id == id;
-      });
-
-      if (itens) {
-        const li = document.createElement("li") as HTMLLIElement;
-
-        li.innerHTML = `
-        <li class="itemBought"><strong>${itens.name}</strong> - R$ ${itens.price}</li>
-        `;
-
-        boughtItens.appendChild(li);
-      }
-    });
-  };
   const itensEl = page.querySelector(".itensName") as HTMLUListElement;
 
   const renderItensEl = () => {
@@ -98,20 +80,38 @@ if (page) {
 
       button.addEventListener("click", (e) => {
         e.preventDefault();
+        boughtItens.innerHTML = "";
 
-        const element = e.target as HTMLButtonElement;
-        const elValue = Number(element.value);
+        const element = e.target as HTMLLIElement;
 
-        if (element) {
-          selectedItens.push(Number(element.value));
-        } else {
-          selectedItens = selectedItens.filter((id) => {
-            return id !== elValue;
-          });
+        lengthItens.push(item.lenght);
+
+        const itens = lengthItens.find((qtd) => {
+          return qtd === item.lenght;
+        });
+
+        const liB = document.createElement("li");
+        let count = 0;
+        let i = 0;
+
+        if (item.lenght > 5) {
+          window.alert("Só são permitidos 5 itens por compra");
+        } else if (itens) {
+          count = item.lenght++;
+
+          liB.innerHTML = `
+            <li class="itemBought" value="${i++}"><strong>${
+            item.name
+          }</strong> - R$ ${
+            item.price
+          } <select><option>${count}</option></select></li>
+            `;
         }
-        renderAddItens();
-      });
 
+
+
+        boughtItens.appendChild(liB);
+      });
       buyButton.appendChild(li);
       itensEl.appendChild(text);
     });

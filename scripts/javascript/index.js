@@ -45,23 +45,9 @@ if (page) {
         },
     ];
     let selectedItens = [];
+    let lengthItens = [];
     const buyButton = page.querySelector(".buyButton");
     const boughtItens = page.querySelector(".itensBought");
-    const renderAddItens = () => {
-        boughtItens.innerHTML = "";
-        selectedItens.forEach((id) => {
-            const itens = listItens.find((item) => {
-                return item.id == id;
-            });
-            if (itens) {
-                const li = document.createElement("li");
-                li.innerHTML = `
-        <li class="itemBought"><strong>${itens.name}</strong> - R$ ${itens.price}</li>
-        `;
-                boughtItens.appendChild(li);
-            }
-        });
-    };
     const itensEl = page.querySelector(".itensName");
     const renderItensEl = () => {
         itensEl.innerHTML = "";
@@ -78,17 +64,25 @@ if (page) {
             const button = li.querySelector("button");
             button.addEventListener("click", (e) => {
                 e.preventDefault();
+                boughtItens.innerHTML = "";
                 const element = e.target;
-                const elValue = Number(element.value);
-                if (element) {
-                    selectedItens.push(Number(element.value));
+                lengthItens.push(item.lenght);
+                const itens = lengthItens.find((qtd) => {
+                    return qtd === item.lenght;
+                });
+                const liB = document.createElement("li");
+                let count = 0;
+                let i = 0;
+                if (item.lenght > 5) {
+                    window.alert("Só são permitidos 5 itens por compra");
                 }
-                else {
-                    selectedItens = selectedItens.filter((id) => {
-                        return id !== elValue;
-                    });
+                else if (itens) {
+                    count = item.lenght++;
+                    liB.innerHTML = `
+            <li class="itemBought" value="${i++}"><strong>${item.name}</strong> - R$ ${item.price} <select><option>${count}</option></select></li>
+            `;
                 }
-                renderAddItens();
+                boughtItens.appendChild(liB);
             });
             buyButton.appendChild(li);
             itensEl.appendChild(text);
