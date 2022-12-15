@@ -80,25 +80,25 @@ if (page) {
 
       button.addEventListener("click", (e) => {
         e.preventDefault();
-        boughtItens.innerHTML = "";
+        
+        console.log(e)
 
         const element = e.target as HTMLLIElement;
 
         lengthItens.push(item.lenght);
-
         const itens = lengthItens.find((qtd) => {
           return qtd === item.lenght;
         });
-
+  
         const liB = document.createElement("li");
         let count = 0;
         let i = 0;
-
+  
         if (item.lenght > 5) {
           window.alert("Só são permitidos 5 itens por compra");
         } else if (itens) {
           count = item.lenght++;
-
+  
           liB.innerHTML = `
             <li class="itemBought" value="${i++}"><strong>${
             item.name
@@ -107,9 +107,6 @@ if (page) {
           } <select><option>${count}</option></select></li>
             `;
         }
-
-
-
         boughtItens.appendChild(liB);
       });
       buyButton.appendChild(li);
@@ -120,6 +117,7 @@ if (page) {
   const render = () => {
     renderItensEl();
     renderAdd();
+    
   };
 
   render();

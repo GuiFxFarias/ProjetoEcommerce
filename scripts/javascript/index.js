@@ -64,7 +64,7 @@ if (page) {
             const button = li.querySelector("button");
             button.addEventListener("click", (e) => {
                 e.preventDefault();
-                boughtItens.innerHTML = "";
+                console.log(e);
                 const element = e.target;
                 lengthItens.push(item.lenght);
                 const itens = lengthItens.find((qtd) => {
